@@ -30,7 +30,8 @@
 //         Example: "hello" → "HELLO!"
 
 document.getElementById('btnShout').addEventListener('click',function(){
-    outShout.innerHTML = shoutInput.value.toUpperCase();
+
+    outShout.innerHTML = shoutInput.value.toUpperCase() + "!";
 })
 // ============================================
 //  MAIN: Pizza Builder
@@ -46,7 +47,7 @@ document.getElementById('btnShout').addEventListener('click',function(){
 //         Add a click event listener.
 //         Inside the listener:
 document.getElementById('btnCalc').addEventListener('click',function(){
-    let price = document.getElementsByName("rg")
+    let radios = document.getElementsByName("rg")
     let selected = ""
     for (i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
@@ -67,12 +68,12 @@ document.getElementById('btnCalc').addEventListener('click',function(){
 //      many are .checked. Multiply count by 0.50.
 let count = 0
 let topping = document.getElementsByName("cb")
-for(i = 0; i < Toppings.length; i++) {
-    if (Toppings[i].checked) {
+for(i = 0; i < topping.length; i++) {
+    if (topping[i].checked) {
         count = count + 1
     }
 }
-count = count/2
+let toppingsPrice = count * 0.5
 //   c) Get the service fee:
 //      Use document.getElementById("serviceSelect").value
 //      to get the selected option value ("dinein", "takeout",
@@ -83,22 +84,25 @@ count = count/2
 //        "delivery" → 3.00
 let service = document.getElementById("serviceSelect").value
 let fee = 0
-if (service = "dinein") {
+if (service === "dinein") {
     fee = 0
-} else if (service = "takeout") {
+} else if (service === "takeout") {
     fee = 1.5
-} else if (service = "delivery") {
+} else if (service === "delivery") {
     fee = 3.00
 }
 //   d) Calculate total: size + toppings + service fee
-let total = selected + toppings + fee
+let total = selected + toppingsPrice + fee
 //   e) Get the customer name from the input with ID "myInput"
-let customerName = document.getElementById("myInput")
+let customerName = document.getElementById("myInput").value
 //   f) Display the result in the element with ID "myPara":
 //      "[name], your total is $[total]"
 //      Use .toFixed(2) to format the total.
 //      Example: "Alice, your total is $13.50"
 //      If name is empty, use "Customer" as the default.
+if (customerName === ""){
+    customerName = "Customer"
+}
 document.getElementById("myPara").innerText = customerName + ", your total is $" + total.toFixed(2)
 
 
