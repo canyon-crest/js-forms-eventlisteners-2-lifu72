@@ -51,11 +51,11 @@ document.getElementById('btnCalc').addEventListener('click',function(){
     let selected = ""
     for (i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
-            selected = radio[i].value
+            selected = radios[i].value
             selected = parseFloat(selected)
         }
     }
-})
+
 //   a) Get the selected size price:
 //      Use document.getElementsByName("rg") to get all
 //      size radio buttons. Loop through them to find the
@@ -104,7 +104,7 @@ if (customerName === ""){
     customerName = "Customer"
 }
 document.getElementById("myPara").innerText = customerName + ", your total is $" + total.toFixed(2)
-
+})
 
 
 // STEP 4: Get the "Clear" button by ID ("clearBtn")
